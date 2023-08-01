@@ -7,8 +7,8 @@
     <title>Vite + React</title>
     <script>
       if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
           window.matchMedia("(prefers-color-scheme: dark)").matches)
       ) {
         document.documentElement.classList.add("dark");
@@ -17,7 +17,9 @@
       }
     </script>
   </head>
-  <body>
+  <body
+    class="sm:px-0 md:px-12 lg:px-32 xl:px-60 bg-background dark:bg-backgroundD text-text dark:text-textD font-sans"
+  >
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

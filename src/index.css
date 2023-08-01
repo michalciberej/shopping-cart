@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.link {
+  transform: translateY(2px);
+}
+
+.link::after {
+  content: "";
+  display: block;
+  height: 2px;
+  transform: scaleX(0);
+  transition: all 0.3s ease;
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}
