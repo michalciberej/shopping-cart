@@ -17,3 +17,21 @@
 .link:hover::after {
   transform: scaleX(1);
 }
+
+.carouselImg {
+  max-width: 20rem;
+  height: 15rem;
+  animation: images 20s ease infinite;
+}
+
+@keyframes images {
+  0% {
+    transform: translateX(10%);
+  }
+  95% {
+    transform: translateX(-95%);
+  }
+  100% {
+    transform: translateX(10%);
+  }
+}

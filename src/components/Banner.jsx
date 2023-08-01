@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Banner = () => {
@@ -19,7 +18,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="sm:p-6 md:p-0 flex gap-0 sm:gap-12">
+    <div className="sm:p-6 md:p-0 flex justify-between">
       <div className="flex flex-col sm:justify-around gap-10 sm:gap-0">
         <h1 className="text-5xl font-bold text-center sm:text-start">
           Try Our New Awesome{" "}
@@ -52,6 +51,7 @@ const Banner = () => {
           src={fetchedData}
           alt="picture"
           className=" rounded-md shadow-md shadow-backgroundD dark:shadow-background"
+          loading="lazy"
         />
       </div>
     </div>

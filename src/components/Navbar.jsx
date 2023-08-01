@@ -18,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between items-center py-4 mb-12 sm:mb-44">
+    <nav className="flex justify-between items-center py-4 mb-12 sm:mb-48">
       <h1 className="text-2xl">LOGO IPSUM</h1>
       <div className="flex items-center bg-secondary rounded-md border-2 border-accent">
         <input
