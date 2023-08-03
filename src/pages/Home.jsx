@@ -5,6 +5,8 @@ import { mdiTruckDeliveryOutline, mdiFaceAgent, mdiQualityHigh } from "@mdi/js";
 import Carousel from "../components/Carousel";
 import ReviewCard from "../components/ReviewCard";
 import { useEffect, useState } from "react";
+import Newsletter from "../components/Newsletter";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const [reviews, setReviews] = useState(null);
@@ -23,9 +25,9 @@ const Home = () => {
     <>
       <Navbar />
       <Banner />
-      <div className="mt-44 mb-24 ">
+      <div className="mt-44">
         <h2 className="text-3xl text-center mb-6">Why Choose Us?</h2>
-        <div className="px-8 sm:px-0 grid grid-cols-1 lg:grid-cols-3 container gap-8 mx-auto items-center justify-between">
+        <div className="grid grid-cols-1 lg:grid-cols-3 container gap-8 mx-auto items-center justify-between">
           <InfoCard
             heading="Fast delivery"
             info="We are colaborating with deliveryServiceOne and deliveryServiceTwo to bring the fastest delivery possible."
@@ -44,9 +46,9 @@ const Home = () => {
         </div>
       </div>
       <Carousel />
-      <div className="mb-24">
+      <div>
         <h2 className="text-3xl text-center mb-6">Reviews</h2>
-        <div className="px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 sm:px-0">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:px-0 mb-24">
           {reviews != null ? (
             <ReviewCard
               firstName={reviews.results[0].name.first}
@@ -72,6 +74,10 @@ const Home = () => {
             />
           ) : null}
         </div>
+        <div className="">
+          <Newsletter />
+        </div>
+        <Footer />
       </div>
     </>
   );

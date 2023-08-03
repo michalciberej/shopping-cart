@@ -19,7 +19,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="mb-24 px-8 md:px-0">
+    <div className="mb-24 px-8 md:px-0 mt-24">
       <h1 className="text-3xl text-center mb-6">Bestsellers</h1>
       <div className="flex overflow-hidden gap-8">
         <img

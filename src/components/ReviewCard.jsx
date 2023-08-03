@@ -2,7 +2,7 @@ import Stars from "./Stars";
 
 const ReviewCard = ({ firstName, lastName, picture, rating }) => {
   return (
-    <div className="shadow-md p-8 text-text dark:text-textD bg-secondary dark:bg-secondaryD rounded-md shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
+    <div className="p-8 text-text dark:text-textD bg-secondary dark:bg-secondaryD rounded-md shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
       <div className="flex items-center gap-8 mb-6">
         <img src={picture} className="rounded-full"></img>
         <div className="flex flex-col">
