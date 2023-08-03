@@ -6,13 +6,14 @@ import { mdiMagnify } from "@mdi/js";
 import { Outlet } from "react-router-dom";
 
 const Products = () => {
-  const [products, setProducts] = useState(null);
-  const [selected, setSelected] = useState([]);
+  const [products, setProducts] = useState("");
+  const [active, setActive] = useState(false);
+  // const [selected, setSelected] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch(
-        "https://dummyjson.com/products/category/laptops?limit=5"
+        "https://dummyjson.com/products/category/laptops?limit=4"
       )
         .then((promise) => promise.json())
         .catch((error) => console.error(error));
@@ -21,34 +22,50 @@ const Products = () => {
     fetchData();
   }, []);
 
+  const handleCategoryShow = (e) => {
+    active === false ? setActive(true) : setActive(false);
+    if (e.target.id === "category") setActive(false);
+  };
+
   return (
     <>
       <Navbar carted={products} />
-      <div className="flex ">
-        <div className="bg-secondary dark:bg-secondaryD rounded-xl shadow-md p-2">
-          <div className="mb-4 flex items-center min-w-fit bg-secondary rounded-md border-2 border-accent">
+      <div className="">
+        <div className="flex justify-between p-2 items-center mb-12 bg-secondary dark:bg-secondaryD rounded-xl shadow-md p-">
+          <div>
+            <button className="pl-4" onClick={handleCategoryShow}>
+              Categories
+            </button>
+            {active === true ? (
+              <ul
+                id="category"
+                className="gap-2 absolute bg-secondary dark:bg-secondaryD rounded-lg p-4 shadow-md -translate-x-2"
+                onMouseLeave={handleCategoryShow}
+              >
+                <li className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 pr-2 rounded-md">
+                  Laptops
+                </li>
+                <li className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 pr-2 rounded-md">
+                  Sunglasses
+                </li>
+                <li className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 pr-2 rounded-md">
+                  Smartphones
+                </li>
+              </ul>
+            ) : null}
+          </div>
+          <div className="brightness-95 flex items-center min-w-fit bg-secondary brightness- dark:bg-secondaryD dark:brightness-200 rounded-md">
             <input
               type="search"
               placeholder="Search..."
-              className=" bg-transparent pl-2 py-1 text-text outline-none"
+              className="bg-transparent pl-2 py-1 text-text outline-none"
             />
             <button type="button">
               <Icon path={mdiMagnify} size={1} className="text-text mx-2" />
             </button>
           </div>
-          <ul className="flex flex-col gap-2">
-            <li className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 rounded-md">
-              Laptops
-            </li>
-            <li className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 rounded-md">
-              Sunglasses
-            </li>
-            <li className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 rounded-md">
-              Smartphones
-            </li>
-          </ul>
         </div>
-        <Outlet />
+        <Outlet context={products != null ? products : null} />
       </div>
       <Footer />
     </>

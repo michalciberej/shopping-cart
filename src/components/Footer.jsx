@@ -11,7 +11,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="shadow-md bg-secondary dark:bg-secondaryD p-8 my-24 rounded-xl">
+    <div className="shadow-md bg-secondary dark:bg-secondaryD p-8 mb-12 rounded-xl">
       <h1 className="text-center mb-8 font-bold text-2xl">LOGO IPSUM</h1>
       <div className="flex justify-between sm:justify-around">
         <div className="flex flex-col">

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { mdiThemeLightDark, mdiShoppingOutline, mdiMagnify } from "@mdi/js";
+import { mdiThemeLightDark, mdiShoppingOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import CardSidebar from "./CartSidebar";
 import { useState } from "react";
@@ -24,7 +24,7 @@ const Navbar = () => {
   };
   return (
     <nav className="flex justify-between items-center py-4">
-      <h1 className="text-2xl">LOGO IPSUM</h1>
+      <h1 className="text-2xl font-bold">LOGO IPSUM</h1>
 
       <div className="flex gap-6">
         <Link to="/home" className="link after:bg-primary">

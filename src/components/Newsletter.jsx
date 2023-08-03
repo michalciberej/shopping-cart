@@ -1,6 +1,6 @@
 const Newsletter = () => {
   return (
-    <div className="shadow-md text-textD bg-accent dark:bg-accentD p-8 rounded-xl relative z-10">
+    <div className="mb-24 shadow-md text-textD bg-accent dark:bg-accentD p-8 rounded-xl relative z-10">
       <form
         action="#"
         method="#"

@@ -1,6 +1,6 @@
 const CardSidebar = () => {
   return (
-    <div className="absolute mt-4 -translate-x-28 rounded-lg bg-secondaryD p-8">
+    <div className="absolute mt-4 -translate-x-28 rounded-lg bg-secondaryD p-8 z-10">
       <div className="flex justify-between mb-4">
         <span>Products</span>
       </div>

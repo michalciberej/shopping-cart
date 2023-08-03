@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const [fetchedData, setFetchedData] = useState(null);
@@ -32,12 +33,14 @@ const Banner = () => {
           Use our new online store.
         </span>
         <div className="flex gap-6 justify-center sm:justify-start">
-          <button
-            type="button"
-            className="text-xl transition-all text-text px-12 py-4 bg-primary rounded-lg hover:shadow-2xl hover:shadow-primary hover:-translate-y-1"
-          >
-            Buy
-          </button>
+          <Link to="/products/a">
+            <button
+              type="button"
+              className="text-xl transition-all text-text px-12 py-4 bg-primary rounded-lg hover:shadow-2xl hover:shadow-primary hover:-translate-y-1"
+            >
+              Buy
+            </button>
+          </Link>
           <button
             type="button"
             className="text-xl transition-transform text-text dark:text-textD px-6 py-4 bg-secondary dark:bg-secondaryD rounded-lg hover:opacity-80 hover:-translate-y-1"
