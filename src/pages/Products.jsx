@@ -7,8 +7,9 @@ import { Outlet } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState("");
+  const [selected, setSelected] = useState(null);
   const [active, setActive] = useState(false);
-  // const [selected, setSelected] = useState([]);
+  const [carted, setCarted] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +30,7 @@ const Products = () => {
 
   return (
     <>
-      <Navbar carted={products} />
+      <Navbar carted={carted} setCarted={setCarted} />
       <div className="">
         <div className="flex justify-between p-2 items-center mb-12 bg-secondary dark:bg-secondaryD rounded-xl shadow-md p-">
           <div>
@@ -65,7 +66,13 @@ const Products = () => {
             </button>
           </div>
         </div>
-        <Outlet context={products != null ? products : null} />
+        <Outlet
+          context={
+            products != null
+              ? [products, selected, setSelected, carted, setCarted]
+              : null
+          }
+        />
       </div>
       <Footer />
     </>

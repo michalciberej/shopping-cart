@@ -4,7 +4,7 @@ import Icon from "@mdi/react";
 import CardSidebar from "./CartSidebar";
 import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ carted, setCarted }) => {
   const [opened, setOpened] = useState("false");
 
   const handleThemeChange = () => {
@@ -22,15 +22,16 @@ const Navbar = () => {
   const handleCartClick = () => {
     opened === true ? setOpened(false) : setOpened(true);
   };
+
   return (
     <nav className="flex justify-between items-center py-4">
       <h1 className="text-2xl font-bold">LOGO IPSUM</h1>
 
       <div className="flex gap-6">
-        <Link to="/home" className="link after:bg-primary">
+        <Link to="/" className="link after:bg-primary">
           Home
         </Link>
-        <Link to="/products" className="link after:bg-primary">
+        <Link to="/products/all" className="link after:bg-primary">
           Products
         </Link>
         <button type="button" onClick={handleThemeChange}>
@@ -40,7 +41,13 @@ const Navbar = () => {
           <button type="button" onClick={handleCartClick}>
             <Icon path={mdiShoppingOutline} size={1} />
           </button>
-          {opened === true ? <CardSidebar /> : null}
+          {opened === true ? (
+            <CardSidebar
+              carted={carted}
+              setCarted={setCarted}
+              handleCartClick={handleCartClick}
+            />
+          ) : null}
         </div>
       </div>
     </nav>
