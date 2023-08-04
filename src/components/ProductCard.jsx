@@ -9,16 +9,22 @@ const ProductCard = ({
   carted,
   setCarted,
 }) => {
-  const data = {
+  let data = {
     productImg: img,
     productName: name,
     productPrice: price,
     productId: id,
+    productQuantity: 1,
   };
 
   const handleSelect = () => {
     setSelected(data);
   };
+
+  const updateQuntity = (e) => {
+    data = { ...data, productQuantity: e.target.value };
+  };
+
   const handleCarted = () => {
     setCarted(carted.concat(data));
   };
@@ -33,7 +39,12 @@ const ProductCard = ({
         <div className="flex justify-between items-end gap-4">
           <span className="text-red-500 text-xl">{price}$</span>
           <div className="flex gap-2">
-            <input type="number" className="w-12 text-text pl-2" />
+            <input
+              type="number"
+              className="w-12 text-text pl-2"
+              min="1"
+              onChange={updateQuntity}
+            />
             <button
               className="bg-accentD py-1 px-2 rounded-lg"
               onClick={handleCarted}

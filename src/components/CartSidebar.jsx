@@ -21,6 +21,7 @@ const CardSidebar = ({ carted, setCarted, handleCartClick }) => {
                   title={obj.productName}
                   price={obj.productPrice}
                   id={obj.productId}
+                  quantity={obj.productQuantity}
                   key={obj.productId}
                   carted={carted}
                   setCarted={setCarted}
@@ -32,8 +33,12 @@ const CardSidebar = ({ carted, setCarted, handleCartClick }) => {
           <div className="flex justify-between">
             <h6 className="text-lg">Total:</h6>
             <span className="text-textD">
-              {carted != [] &&
-                carted.reduce((sum, cur) => sum + cur.productPrice, 0)}
+              {carted != []
+                ? carted.reduce(
+                    (sum, cur) => sum + cur.productPrice * cur.productQuantity,
+                    0
+                  )
+                : 0}
             </span>
           </div>
           <button className="bg-accentD px-4 py-2 rounded-md text-lg">

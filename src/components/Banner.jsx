@@ -52,9 +52,7 @@ const Banner = () => {
       <div className="hidden sm:block">
         <img
           src={fetchedData}
-          alt="picture"
           className=" rounded-md shadow-md shadow-backgroundD dark:shadow-background"
-          loading="lazy"
         />
       </div>
     </div>
