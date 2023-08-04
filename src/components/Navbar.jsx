@@ -7,6 +7,14 @@ import { useState } from "react";
 const Navbar = ({ carted, setCarted }) => {
   const [opened, setOpened] = useState("false");
 
+  const disableScroll = () => {
+    document.body.style.overflow = "hidden";
+  };
+
+  const enableScroll = () => {
+    document.body.style.overflow = "scroll";
+  };
+
   const handleThemeChange = () => {
     if (localStorage.theme === "dark") {
       localStorage.theme = "light";
@@ -21,6 +29,7 @@ const Navbar = ({ carted, setCarted }) => {
 
   const handleCartClick = () => {
     opened === true ? setOpened(false) : setOpened(true);
+    opened === true ? enableScroll() : disableScroll();
   };
 
   return (

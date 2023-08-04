@@ -1,27 +1,8 @@
 import CartProduct from "./CartProduct";
 import Icon from "@mdi/react";
 import { mdiClose } from "@mdi/js";
-import { useState } from "react";
 
 const CardSidebar = ({ carted, setCarted, handleCartClick }) => {
-  const [scrollActive, setScrollActive] = useState(false);
-
-  const disableScroll = () => {
-    // Get the current page scroll position
-    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    (scrollLeft = window.pageXOffset || document.documentElement.scrollLeft),
-      // if any scroll is attempted, set this to the previous value
-      (window.onscroll = () => {
-        window.scrollTo(scrollLeft, scrollTop);
-      });
-  };
-
-  const enableScroll = () => {
-    window.onscroll = function () {};
-  };
-
-  scrollActive === true ? disableScroll : enableScroll;
-
   return (
     <>
       <div className="absolute flex flex-col justify-between top-0 right-0 bottom-0 bg-secondaryD p-8 z-20">
