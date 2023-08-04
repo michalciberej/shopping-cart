@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Icon from "@mdi/react";
-import { mdiMagnify } from "@mdi/js";
-import { Outlet } from "react-router-dom";
+import { mdiMagnify, mdiShoppingOutline } from "@mdi/js";
+import { Outlet, Form } from "react-router-dom";
+import CardSidebar from "../components/CartSidebar";
 
 const Products = () => {
+  const [opened, setOpened] = useState("false");
   const [products, setProducts] = useState("");
   const [selected, setSelected] = useState(null);
   const [active, setActive] = useState(false);
@@ -23,11 +25,23 @@ const Products = () => {
     fetchData();
   }, []);
 
+  const disableScroll = () => {
+    document.body.style.overflow = "hidden";
+  };
+
+  const enableScroll = () => {
+    document.body.style.overflow = "scroll";
+  };
+
   const handleCategoryShow = (e) => {
     active === false ? setActive(true) : setActive(false);
     if (e.target.id === "category") setActive(false);
   };
 
+  const handleCartClick = () => {
+    opened === true ? setOpened(false) : setOpened(true);
+    opened === true ? enableScroll() : disableScroll();
+  };
   return (
     <>
       <Navbar carted={carted} setCarted={setCarted} />
@@ -55,16 +69,34 @@ const Products = () => {
               </ul>
             ) : null}
           </div>
-          <div className="brightness-95 flex items-center min-w-fit bg-secondary brightness- dark:bg-secondaryD dark:brightness-200 rounded-md">
-            <input
-              type="search"
-              placeholder="Search..."
-              className="bg-transparent pl-2 py-1 text-text outline-none"
-            />
-            <button type="button">
-              <Icon path={mdiMagnify} size={1} className="text-text mx-2" />
+          <div className="flex gap-2">
+            <Form
+              id="search-form"
+              role="search"
+              className="brightness-95 flex items-center min-w-fit bg-secondary brightness- dark:bg-secondaryD dark:brightness-200 rounded-md"
+            >
+              <input
+                type="search"
+                placeholder="Search..."
+                className="bg-transparent pl-2 py-1 text-text outline-none"
+                name="q"
+                aria-label="Seach products"
+              />
+              <button type="button">
+                <Icon path={mdiMagnify} size={1} className="text-text mx-2" />
+              </button>
+            </Form>
+            <button type="button" onClick={handleCartClick}>
+              <Icon path={mdiShoppingOutline} size={1} />
             </button>
           </div>
+          {opened === true ? (
+            <CardSidebar
+              carted={carted}
+              setCarted={setCarted}
+              handleCartClick={handleCartClick}
+            />
+          ) : null}
         </div>
         <Outlet
           context={

@@ -1,20 +1,8 @@
 import { Link } from "react-router-dom";
-import { mdiThemeLightDark, mdiShoppingOutline } from "@mdi/js";
+import { mdiThemeLightDark } from "@mdi/js";
 import Icon from "@mdi/react";
-import CardSidebar from "./CartSidebar";
-import { useState } from "react";
 
-const Navbar = ({ carted, setCarted }) => {
-  const [opened, setOpened] = useState("false");
-
-  const disableScroll = () => {
-    document.body.style.overflow = "hidden";
-  };
-
-  const enableScroll = () => {
-    document.body.style.overflow = "scroll";
-  };
-
+const Navbar = () => {
   const handleThemeChange = () => {
     if (localStorage.theme === "dark") {
       localStorage.theme = "light";
@@ -25,11 +13,6 @@ const Navbar = ({ carted, setCarted }) => {
       document.querySelector("html").classList.remove("light");
       document.querySelector("html").classList.add("dark");
     }
-  };
-
-  const handleCartClick = () => {
-    opened === true ? setOpened(false) : setOpened(true);
-    opened === true ? enableScroll() : disableScroll();
   };
 
   return (
@@ -46,18 +29,6 @@ const Navbar = ({ carted, setCarted }) => {
         <button type="button" onClick={handleThemeChange}>
           <Icon path={mdiThemeLightDark} size={1} />
         </button>
-        <div>
-          <button type="button" onClick={handleCartClick}>
-            <Icon path={mdiShoppingOutline} size={1} />
-          </button>
-          {opened === true ? (
-            <CardSidebar
-              carted={carted}
-              setCarted={setCarted}
-              handleCartClick={handleCartClick}
-            />
-          ) : null}
-        </div>
       </div>
     </nav>
   );

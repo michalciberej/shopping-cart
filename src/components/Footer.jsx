@@ -29,9 +29,9 @@ const Footer = () => {
         <div>
           <h4 className="mb-4 font-bold">CONNECT WITH US</h4>
           <div className="flex justify-between">
-            <button className="hover:hover:opacity-80">
+            <a href="www.instagram.com" className="hover:hover:opacity-80">
               <Icon path={mdiInstagram} size={1} />
-            </button>
+            </a>
             <button>
               <Icon path={mdiFacebook} size={1} className="hover:opacity-80" />
             </button>
