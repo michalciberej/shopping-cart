@@ -26,23 +26,27 @@ const ProductCard = ({
   };
 
   const handleCarted = () => {
-    if (carted.length >= 1) filterCarted();
-    else setCarted(carted.concat(productData));
-  };
-
-  const filterCarted = () => {
-    setCarted(
-      carted.map((obj) => {
-        if (obj.productId === id) {
+    if (isProductAlreadyInCart()) {
+      const newState = carted.map((obj) => {
+        if (obj.productId == id) {
           return {
             ...productData,
             productQuantity:
               parseInt(productData.productQuantity) +
               parseInt(obj.productQuantity),
           };
-        } else return obj;
-      })
-    );
+        } else {
+          return obj;
+        }
+      });
+      setCarted(newState);
+    } else setCarted(carted.concat(productData));
+  };
+
+  const isProductAlreadyInCart = () => {
+    const x = carted.find((obj) => obj.productId === id);
+    if (x) return true;
+    else return false;
   };
 
   return (
