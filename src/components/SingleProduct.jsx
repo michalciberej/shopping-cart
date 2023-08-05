@@ -27,13 +27,13 @@ const SingleProduct = () => {
         </div>
         <div className="flex gap-8 items-center justify-around mt-4">
           <div className="flex items-end gap-4">
-            <span className="line-through">{selected.productPrice * 0.8}</span>
+            <span className="line-through">{selected.productPrice * 0.8}$</span>
             <span className="text-red-500 text-2xl font-bold">
-              {selected.productPrice}
+              {selected.productPrice}$
             </span>
           </div>
           <button
-            className="text-lg px-6 py-2 bg-accentD rounded-md brightness-125"
+            className="text-lg px-6 py-2 text-textD bg-accent dark:bg-accentD hover:invert rounded-md brightness-125"
             onClick={handleCarted}
           >
             Add to cart

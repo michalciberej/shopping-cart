@@ -5,7 +5,7 @@ import Icon from "@mdi/react";
 const CardSidebar = ({ carted, setCarted, handleCartClick }) => {
   return (
     <>
-      <div className="absolute flex flex-col justify-between top-0 right-0 bottom-0 bg-secondaryD p-8 z-20">
+      <div className="absolute flex flex-col justify-between top-0 right-0 bottom-0 bg-background dark:bg-secondaryD p-8 z-20">
         <div>
           <div className="flex justify-between mb-4">
             <span className="text-xl">Cart</span>
@@ -32,16 +32,20 @@ const CardSidebar = ({ carted, setCarted, handleCartClick }) => {
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">
             <h6 className="text-lg">Total:</h6>
-            <span className="text-textD">
+            <span className="text-text dark:text-textD">
               {carted != []
                 ? carted.reduce(
                     (sum, cur) => sum + cur.productPrice * cur.productQuantity,
                     0
                   )
                 : 0}
+              $
             </span>
           </div>
-          <button className="bg-accentD px-4 py-2 rounded-md text-lg">
+          <button
+            className="text-textD bg-accent dark:bg-accentD px-4 py-2 rounded-md text-lg hover:invert"
+            type="button"
+          >
             Checkout
           </button>
         </div>

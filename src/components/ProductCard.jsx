@@ -9,7 +9,7 @@ const ProductCard = ({
   carted,
   setCarted,
 }) => {
-  let data = {
+  let productData = {
     productImg: img,
     productName: name,
     productPrice: price,
@@ -18,21 +18,37 @@ const ProductCard = ({
   };
 
   const handleSelect = () => {
-    setSelected(data);
+    setSelected(productData);
   };
 
   const updateQuntity = (e) => {
-    data = { ...data, productQuantity: e.target.value };
+    productData = { ...productData, productQuantity: e.target.value };
   };
 
   const handleCarted = () => {
-    setCarted(carted.concat(data));
+    if (carted.length >= 1) filterCarted();
+    else setCarted(carted.concat(productData));
+  };
+
+  const filterCarted = () => {
+    setCarted(
+      carted.map((obj) => {
+        if (obj.productId === id) {
+          return {
+            ...productData,
+            productQuantity:
+              parseInt(productData.productQuantity) +
+              parseInt(obj.productQuantity),
+          };
+        } else return obj;
+      })
+    );
   };
 
   return (
     <div className="flex flex-col justify-between p-4 bg-secondary dark:bg-secondaryD rounded-lg shadow-md">
       <Link to={`../${id}`} onClick={handleSelect}>
-        <img src={img} alt="X" className="max-w-xs rounded-md mb-4" />
+        <img src={img} alt="X" className="max-w-full rounded-md mb-4" />
       </Link>
       <div>
         <h5 className="text-center mb-4 text-xl">{name}</h5>
@@ -46,7 +62,8 @@ const ProductCard = ({
               onChange={updateQuntity}
             />
             <button
-              className="bg-accentD py-1 px-2 rounded-lg"
+              type="button"
+              className="text-textD bg-accent dark:bg-accentD py-1 px-2 rounded-lg hover:invert"
               onClick={handleCarted}
             >
               Add to Cart
