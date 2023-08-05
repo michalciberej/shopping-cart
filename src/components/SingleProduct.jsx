@@ -5,15 +5,47 @@ const SingleProduct = () => {
   const [products, selected, setSelected, carted, setCarted] =
     useOutletContext();
 
+  let productData = {
+    productImg: selected.productImg,
+    productName: selected.productName,
+    productPrice: selected.productPrice,
+    productId: selected.productId,
+    productQuantity: 1,
+  };
+
   const handleCarted = () => {
-    setCarted(carted.concat(selected));
+    if (isProductAlreadyInCart()) {
+      const newState = carted.map((obj) => {
+        if (obj.productId == selected.productId) {
+          return {
+            ...productData,
+            productQuantity:
+              parseInt(productData.productQuantity) +
+              parseInt(obj.productQuantity),
+          };
+        } else {
+          return obj;
+        }
+      });
+      setCarted(newState);
+    } else setCarted(carted.concat(productData));
+  };
+
+  const isProductAlreadyInCart = () => {
+    const x = carted.find((obj) => obj.productId === selected.productId);
+    if (x) return true;
+    else return false;
   };
 
   return (
-    <div className="container flex gap-12 mb-12">
-      <img src={selected.productImg} alt="X" className="max-w-xl rounded-md" />
+    <div className="container text-center md:text-start flex-col md:flex-row flex gap-4 xs:gap-12 mb-12">
+      <img
+        src={selected.productImg}
+        alt="X"
+        className="max-w-xl rounded-md self-center xs:self-start"
+      />
       <div className="flex flex-col justify-between">
-        <div>
+        <div className="flex flex-col justify-center">
           <h2 className="text-xl">{selected.productName}</h2>
           <Stars rating={4} dir={"row"} />
         </div>
@@ -25,7 +57,7 @@ const SingleProduct = () => {
             soluta aliquam doloremque cupiditate. Alias, doloribus illo!
           </span>
         </div>
-        <div className="flex gap-8 items-center justify-around mt-4">
+        <div className="flex gap-8 flex-col lg:flex-row items-center justify-around mt-4">
           <div className="flex items-end gap-4">
             <span className="line-through">{selected.productPrice * 0.8}$</span>
             <span className="text-red-500 text-2xl font-bold">

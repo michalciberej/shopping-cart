@@ -5,7 +5,7 @@ import Icon from "@mdi/react";
 const CardSidebar = ({ carted, setCarted, handleCartClick }) => {
   return (
     <>
-      <div className="absolute flex flex-col justify-between top-0 right-0 bottom-0 bg-background dark:bg-secondaryD p-8 z-20">
+      <div className="absolute flex flex-col justify-between top-0 right-0 bottom-0 bg-background dark:bg-secondaryD p-8 z-20 overflow-scroll">
         <div>
           <div className="flex justify-between mb-4">
             <span className="text-xl">Cart</span>

@@ -24,6 +24,12 @@
   animation: images 20s ease infinite;
 }
 
+.card-img {
+  object-fit: cover;
+  height: 15vw;
+  width: 100;
+}
+
 @keyframes images {
   0% {
     transform: translateX(10%);

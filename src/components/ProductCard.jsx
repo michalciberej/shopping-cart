@@ -5,6 +5,7 @@ const ProductCard = ({
   name,
   price,
   id,
+  category,
   setSelected,
   carted,
   setCarted,
@@ -14,6 +15,7 @@ const ProductCard = ({
     productName: name,
     productPrice: price,
     productId: id,
+    productCategory: category,
     productQuantity: 1,
   };
 
@@ -50,10 +52,16 @@ const ProductCard = ({
   };
 
   return (
-    <div className="flex flex-col justify-between p-4 bg-secondary dark:bg-secondaryD rounded-lg shadow-md">
-      <Link to={`../${id}`} onClick={handleSelect}>
-        <img src={img} alt="X" className="max-w-full rounded-md mb-4" />
-      </Link>
+    <div className="flex flex-col justify-between p-4 bg-secondary dark:bg-secondaryD rounded-lg shadow-md max-w-xs md:max-w-sm">
+      <div className="flex justify-center">
+        <Link to={`../${id}`} onClick={handleSelect}>
+          <img
+            src={img}
+            alt="X"
+            className="max-w-full rounded-md mb-4 card-img"
+          />
+        </Link>
+      </div>
       <div>
         <h5 className="text-center mb-4 text-xl">{name}</h5>
         <div className="flex justify-between items-end gap-4">

@@ -16,17 +16,15 @@ const CartProduct = ({
   return (
     <div className="flex gap-4">
       <img src={img} alt={`Picture of ${name}`} className="h-auto w-40" />
-      <div>
+      <div className="flex flex-col justify-around">
         <span>{title}</span>
         <div className="flex">
-          <span>Amount: </span>
-          <span>{quantity}</span>
+          <span>Amount: {quantity}</span>
         </div>
         <div className="flex">
-          <span>Price:</span>
-          <span>{price}</span>
+          <span>Price: {price}$</span>
         </div>
-        <button type="button">
+        <button type="button" className="">
           <Icon path={mdiClose} size={1} onClick={filterCarted} />
         </button>
       </div>

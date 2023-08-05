@@ -13,13 +13,35 @@ const Products = () => {
   const [active, setActive] = useState(false);
   const [carted, setCarted] = useState([]);
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await fetch(
+  //       "https://dummyjson.com/products/category/laptops?limit=4"
+  //     )
+  //       .then((promise) => promise.json())
+  //       .catch((error) => console.error(error));
+  //     setProducts(data);
+  //   };
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch(
-        "https://dummyjson.com/products/category/laptops?limit=4"
-      )
-        .then((promise) => promise.json())
+      const [laptops, smartphones, sunglasses] = await Promise.all([
+        fetch("https://dummyjson.com/products/category/laptops?limit=4"),
+        fetch("https://dummyjson.com/products/category/fragrances?limit=4"),
+        fetch("https://dummyjson.com/products/category/sunglasses?limit=4"),
+      ])
+        .then((responses) => {
+          return Promise.all(responses.map((response) => response.json()));
+        })
         .catch((error) => console.error(error));
+      const data = laptops;
+      data.products = [
+        ...laptops.products,
+        ...smartphones.products,
+        ...sunglasses.products,
+      ];
       setProducts(data);
     };
     fetchData();

@@ -6,7 +6,7 @@ const AllProducts = () => {
     useOutletContext();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 grid-rows-1 gap-8 mb-12">
+    <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 grid-rows-1 gap-8 mb-12">
       {products &&
         products.products.map((obj) => (
           <ProductCard
@@ -14,6 +14,7 @@ const AllProducts = () => {
             name={obj.title}
             price={obj.price}
             id={obj.id}
+            category={obj.category}
             key={obj.id}
             setSelected={setSelected}
             carted={carted}
