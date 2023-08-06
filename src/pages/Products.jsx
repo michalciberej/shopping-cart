@@ -12,18 +12,11 @@ const Products = () => {
   const [selected, setSelected] = useState(null);
   const [active, setActive] = useState(false);
   const [carted, setCarted] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = await fetch(
-  //       "https://dummyjson.com/products/category/laptops?limit=4"
-  //     )
-  //       .then((promise) => promise.json())
-  //       .catch((error) => console.error(error));
-  //     setProducts(data);
-  //   };
-  //   fetchData();
-  // }, []);
+  const handleSelectCategory = (e) => {
+    setSelectedCategory(e.target.textContent);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,21 +67,30 @@ const Products = () => {
               Categories
             </button>
             {active === true ? (
-              <ul
+              <div
                 id="category"
                 className="gap-2 absolute bg-secondary dark:bg-secondaryD rounded-lg p-4 shadow-md -translate-x-2"
                 onMouseLeave={handleCategoryShow}
               >
-                <li className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 pr-2 rounded-md">
+                <button
+                  onClick={handleSelectCategory}
+                  className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 pr-2 rounded-md"
+                >
                   Laptops
-                </li>
-                <li className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 pr-2 rounded-md">
+                </button>
+                <button
+                  onClick={handleSelectCategory}
+                  className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 pr-2 rounded-md"
+                >
                   Sunglasses
-                </li>
-                <li className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 pr-2 rounded-md">
+                </button>
+                <button
+                  onClick={handleSelectCategory}
+                  className="hover:text-textD hover:bg-accent dark:hover:bg-accentD py-1 pl-2 pr-2 rounded-md"
+                >
                   Smartphones
-                </li>
-              </ul>
+                </button>
+              </div>
             ) : null}
           </div>
           <div className="flex gap-2">
@@ -123,7 +125,14 @@ const Products = () => {
         <Outlet
           context={
             products != null
-              ? [products, selected, setSelected, carted, setCarted]
+              ? [
+                  products,
+                  selected,
+                  setSelected,
+                  carted,
+                  setCarted,
+                  selectedCategory,
+                ]
               : null
           }
         />
